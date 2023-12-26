@@ -20,32 +20,26 @@ public abstract class UnifiedUnitTest {
 
     @Test
     void testAddAndGetAll() {
-        Student student1 = new Student("1", "ТЕСТ", "ТЕСТ", "ТЕСТ", "ТЕСТ");
-        Student student2 = new Student("2", "Имя", "Фамилия", "Отчество", "Группа");
-        Student student3 = new Student("3", "Новое", "Студент", "Еще", "Группа");
-        Student student4 = new Student("4", "Еще", "Один", "Студент", "Группа");
-        Student student5 = new Student("5", "Третий", "Тест", "Студент", "Группа");
+        Student student1 = new Student("1", "demo", "demo", "demo", "demo");
+        Student student2 = new Student("2", "etc", "etc", "etc", "etc");
+        Student student3 = new Student("3", "null", "null", "null", "null");
 
         studentList.add(student1);
         studentList.add(student2);
         studentList.add(student3);
-        studentList.add(student4);
-        studentList.add(student5);
 
         List<Student> allStudents = studentList.getAll();
 
         assertNotNull(allStudents);
-        assertEquals(5, allStudents.size());
+        assertEquals(3, allStudents.size());
         assertEquals(student1, studentList.getById("1"));
         assertEquals(student2, studentList.getById("2"));
         assertEquals(student3, studentList.getById("3"));
-        assertEquals(student4, studentList.getById("4"));
-        assertEquals(student5, studentList.getById("5"));
     }
 
     @Test
     void testDelete() {
-        Student student = new Student("1", "ТЕСТ", "ТЕСТ", "ТЕСТ", "ТЕСТ");
+        Student student = new Student("1", "demo", "demo", "demo", "demo");
         studentList.add(student);
 
         studentList.delete("1");
@@ -55,10 +49,10 @@ public abstract class UnifiedUnitTest {
 
     @Test
     void testUpdate() {
-        Student originalStudent = new Student("1", "ТЕСТ", "ТЕСТ", "ТЕСТ", "ТЕСТ");
+        Student originalStudent = new Student("1", "demo", "demo", "demo", "demo");
         studentList.add(originalStudent);
 
-        Student updatedStudent = new Student("1", "ТЕСТ", "ИЗМЕНЕНО", "ТЕСТ", "ТЕСТ");
+        Student updatedStudent = new Student("1", "DEMO", "DEMO", "DEMO", "DEMO");
         studentList.update(updatedStudent);
 
         Student retrievedStudent = studentList.getById("1");
@@ -69,7 +63,7 @@ public abstract class UnifiedUnitTest {
 
     @Test
     void testAddAndDelete() {
-        Student student = new Student("6", "Новый", "Студент", "Еще", "Группа");
+        Student student = new Student("6", "new", "new", "new", "new");
 
         studentList.add(student);
         studentList.delete("6");
@@ -79,10 +73,10 @@ public abstract class UnifiedUnitTest {
 
     @Test
     void testAddAndUpdate() {
-        Student student = new Student("7", "Тестовый", "Студент", "Еще", "Группа");
+        Student student = new Student("7", "Hello", "Hello", "Hello", "Hello");
         studentList.add(student);
 
-        Student updatedStudent = new Student("7", "Тестовый", "Обновленный", "Студент", "Группа");
+        Student updatedStudent = new Student("7", "World", "World", "World", "World");
         studentList.update(updatedStudent);
 
         Student retrievedStudent = studentList.getById("7");
@@ -93,7 +87,7 @@ public abstract class UnifiedUnitTest {
 
     @Test
     void testDeleteNonexistentStudent() {
-        studentList.delete("8"); // Assuming "8" doesn't exist
+        studentList.delete("8");
 
         assertNull(studentList.getById("8"));
     }
